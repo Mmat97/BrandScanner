@@ -6,6 +6,8 @@ BrandScanner
 
 
 
+
+
 ## Advantages
 1.
 
@@ -16,80 +18,89 @@ BrandScanner
 
 
 
+
+
 ## Tools/Languages/References
 **Language:** 
 
--Javascript
+[Python3.6](https://www.python.org/)
 
 **Libraries:** 
 
--React
-[React](https://reactjs.org/)
+[NumPy](https://www.numpy.org/)
 
-
+[OpenCV](https://opencv.org/)
 
 **OS Used:** 
 
 -Mac OS(Terminal)
 
 **Editors:** 
--TextWrangler
+-Visual Studio Code 
+-vim
+
+**References**
+
+[Install OpenCV](https://www.codingforentrepreneurs.com/blog/opencv-python-web-camera-quick-test/)
 
 
 
 
 
-## Installation and how to Run 
+
+## Installation and Run 
 **Install:** 
 
-In terminal,once in react-calendar directory:
-```
-	brew install tesseract --HEAD
-	pip install pytesseract
-```
+In terminal,once in directory with files,
 
+Follow the instructions in the given reference to install opencv:
+https://www.codingforentrepreneurs.com/blog/opencv-python-web-camera-quick-test/
 
-
-Download all corpora
 
 **Run:** 
-
-In terminal,once in react-calendar directory:
-
-
 
 To start,
 
 ```
-	npm start
+	n
 ```
+
+
+
+
+
 
 
 ## Functions
 
-BrandScanner : BrandScanner
+BrandScanner : n
+
+
 
 
 
 ## Example
 
-BrandScanner : BrandScanner
+BrandScanner : n
+
+
+
 
 
 
 ## Important Notes:
 
-**NOTE 1:** BrandScanner
+**NOTE 1:** n
 
 
-##Common Errors
 
-import from "date-fns" for month format 
 
 
 ##Common Errors
 
-bashprofile do-make sure evrything correct and then virtualenv module appears
+1.bashprofile do-make sure evrything correct and then virtualenv module appears
+2. python camera-test.py return ImportError(No module named cv2) because opencv connected
+to python3 only 
 
 
 
