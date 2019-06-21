@@ -53,8 +53,23 @@ BrandScanner
 
 In terminal,once in directory with files,
 
-Follow the instructions in the given reference to install opencv:
-https://www.codingforentrepreneurs.com/blog/opencv-python-web-camera-quick-test/
+1.Follow the instructions in the given reference to install opencv and numpy:
+[Install OpenCV](https://www.codingforentrepreneurs.com/blog/opencv-python-web-camera-quick-test/)
+
+
+2.Install Tesseract OCR(Opticsl Character Recognition)
+
+```
+	brew install tesseract --HEAD
+```
+
+```
+	python3 -m pip install pytesseract
+```
+
+```
+	python3 -m pip install imutils
+```
 
 
 **Run:** 
