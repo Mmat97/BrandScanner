@@ -43,7 +43,7 @@ BrandScanner
 
 [Install OpenCV](https://www.codingforentrepreneurs.com/blog/opencv-python-web-camera-quick-test/)
 
-
+[Text Detection](https://github.com/opencv/opencv/blob/master/samples/dnn/text_detection.py)
 
 
 
@@ -70,6 +70,8 @@ In terminal,once in directory with files,
 ```
 	python3 -m pip install imutils
 ```
+
+
 
 
 **Run:** 

@@ -1,14 +1,3 @@
-'''
-import numpy as np
-import cv2 as cv
-
-from imutils.object_detection import non_max_suppression
-import argparse
-import pytesseract
-import time
-'''
-
-
 # Import required modules
 import cv2 as cv
 import math
@@ -109,7 +98,7 @@ if __name__ == "__main__":
     net = cv.dnn.readNet(model)
 
     # Create a new named window
-    kWinName = "EAST: An Efficient and Accurate Scene Text Detector"
+    kWinName = "BRANDSCANNER EAST"
     cv.namedWindow(kWinName, cv.WINDOW_NORMAL)
     outputLayers = []
     outputLayers.append("feature_fusion/Conv_7/Sigmoid")
@@ -119,6 +108,7 @@ if __name__ == "__main__":
     cap = cv.VideoCapture(args.input if args.input else 0)
 
     while cv.waitKey(1) < 0:
+                                                        #loop always while running to check for text or not 
         # Read frame
         hasFrame, frame = cap.read()
         if not hasFrame:
@@ -133,6 +123,8 @@ if __name__ == "__main__":
 
         # Create a 4D blob from frame.
         blob = cv.dnn.blobFromImage(frame, 1.0, (inpWidth, inpHeight), (123.68, 116.78, 103.94), True, False)
+
+
 
         # Run the model
         net.setInput(blob)
@@ -149,6 +141,7 @@ if __name__ == "__main__":
         for i in indices:
             # get 4 corners of the rotated rect
             vertices = cv.boxPoints(boxes[i[0]])
+
             # scale the bounding box coordinates based on the respective ratios
             for j in range(4):
                 vertices[j][0] *= rW
@@ -157,11 +150,20 @@ if __name__ == "__main__":
                 p1 = (vertices[j][0], vertices[j][1])
                 p2 = (vertices[(j + 1) % 4][0], vertices[(j + 1) % 4][1])
                 cv.line(frame, p1, p2, (0, 255, 0), 2, cv.LINE_AA)
+            print("RECTANGLES PRESENT")
+            #check if text within box
+
+
+
+            #if boxes:
+                #print(boxes[0])
                 # cv.putText(frame, "{:.3f}".format(confidences[i[0]]), (vertices[0][0], vertices[0][1]), cv.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 1, cv.LINE_AA)
 
         # Put efficiency information
-        cv.putText(frame, label, (0, 15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255))
+        #cv.putText(frame, label, (0, 15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255))
 
         # Display the frame
         cv.imshow(kWinName,frame)
         #cv.imwrite("out-{}".format(args.input),frame)
+
+
