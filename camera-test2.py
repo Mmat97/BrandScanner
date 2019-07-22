@@ -404,14 +404,13 @@ while cv2.waitKey(1) < 0:
     # loop over the results
     for ((startX, startY, endX, endY), text) in results:
 	    # display the text OCR'd by Tesseract
-	    print("OCR TEXT")
-	    print("========")
 	    print("{}\n".format(text))
 
 	    # strip out non-ASCII text so we can draw the text on the image
 	    # using OpenCV, then draw the text and a bounding box surrounding
 	    # the text region of the input image
 	    text = "".join([c if ord(c) < 128 else "" for c in text]).strip()
+	    print(text)
 	    output = orig.copy()
 	    cv2.rectangle(output, (startX, startY), (endX, endY),
                    (0, 0, 255), 2)
@@ -424,7 +423,7 @@ while cv2.waitKey(1) < 0:
 
 
 
-
+#ISSUES: SCans even without text, is not accuracte 100% of the time as it scans one less letter sometimes 
 
 
 

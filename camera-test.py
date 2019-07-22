@@ -317,7 +317,7 @@ if __name__ == "__main__":
                 p1 = (vertices[j][0], vertices[j][1])
                 p2 = (vertices[(j + 1) % 4][0], vertices[(j + 1) % 4][1])
                 cv.line(frame, p1, p2, (0, 255, 0), 2, cv.LINE_AA)
-            print("RECTANGLES PRESENT")
+        print("RECTANGLES PRESENT")
             #check if text within box
 
 
