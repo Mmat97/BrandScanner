@@ -10,13 +10,6 @@ import cv2
 import math
 
 
-
-
-
-
-
-
-
 def decode(scores, geometry, scoreThresh):
     detections = []
     confidences = []
@@ -60,25 +53,18 @@ def decode(scores, geometry, scoreThresh):
             w = x1_data[x] + x3_data[x]
 
             # Calculate offset
-            offset = ([offsetX + cosA * x1_data[x] + sinA * x2_data[x], offsetY - sinA * x1_data[x] + cosA * x2_data[x]])
+            offset = ([offsetX + cosA * x1_data[x] + sinA * x2_data[x],
+                      offsetY - sinA * x1_data[x] + cosA * x2_data[x]])
 
             # Find points for rectangle
             p1 = (-sinA * h + offset[0], -cosA * h + offset[1])
             p3 = (-cosA * w + offset[0],  sinA * w + offset[1])
             center = (0.5*(p1[0]+p3[0]), 0.5*(p1[1]+p3[1]))
-            detections.append((center, (w,h), -1*angle * 180.0 / math.pi))
+            detections.append((center, (w, h), -1*angle * 180.0 / math.pi))
             confidences.append(float(score))
 
     # Return detections and confidences
     return [detections, confidences]
-
-
-
-
-
-
-
-
 
 
 def non_max_suppression(boxes, probs=None, overlapThresh=0.3):
@@ -145,10 +131,6 @@ def non_max_suppression(boxes, probs=None, overlapThresh=0.3):
 	return boxes[pick].astype("int")
 
 
-
-
-
-
 def decode_predictions(scores, geometry):
 	# grab the number of rows and columns from the scores volume, then
 	# initialize our set of bounding box rectangles and corresponding
@@ -207,15 +189,7 @@ def decode_predictions(scores, geometry):
 	return (rects, confidences)
 
 
-
-
-
-
-
-
-
-
-def extract_text(orig,image):
+def extract_text(orig, image):
     (origH, origW) = image.shape[:2]
 
     # set the new width and height and then determine the ratio in change
@@ -242,7 +216,8 @@ def extract_text(orig,image):
 
     # construct a blob from the image and then perform a forward pass of
     # the model to obtain the two output layer set
-    blob = cv2.dnn.blobFromImage(image, 1.0, (W, H), (123.68, 116.78, 103.94), swapRB=True, crop=False)
+    blob = cv2.dnn.blobFromImage(
+        image, 1.0, (W, H), (123.68, 116.78, 103.94), swapRB=True, crop=False)
     net.setInput(blob)
     (scores, geometry) = net.forward(layerNames)
 
@@ -295,24 +270,19 @@ def extract_text(orig,image):
 
     # loop over the results
     for ((startX, startY, endX, endY), text) in results:
-	    # display the text OCR'd by Tesseract
-	    print("{}\n".format(text))
-
-	    # strip out non-ASCII text so we can draw the text on the image
-	    # using OpenCV, then draw the text and a bounding box surrounding
-	    # the text region of the input image
-	    text = "".join([c if ord(c) < 128 else "" for c in text]).strip()
-	    print(text)
-        f= open("guru99.txt","w+")######
-	    output = orig.copy()
-	    cv2.rectangle(output, (startX, startY), (endX, endY),
+        print("{}\n".format(text))
+        text = "".join([c if ord(c) < 128 else "" for c in text]).strip()
+        print(text)
+        f=open("guru99.txt","w+")
+        output = orig.copy()
+        cv2.rectangle(output, (startX, startY), (endX, endY),
                    (0, 0, 255), 2)
-	    cv2.putText(output, text, (startX, startY - 20),
+        cv2.putText(output, text, (startX, startY - 20),
                  cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 0, 255), 3)
 
 	    # show the output image
-	    cv2.imshow("Text Detection", output)
-	    cv2.waitKey(0)
+        cv2.imshow("Text Detection", output)
+        cv2.waitKey(0)
 
 
 
@@ -391,7 +361,7 @@ outputLayers.append("feature_fusion/concat_3")
 
 #######
 while cv2.waitKey(1) < 0:#continues to scan until user presses a key in terminal 
-    #loop always while running to check for text or not 
+    # loop always while running to check for text or not 
     # Read frame
     hasFrame, frame = cap.read()
     if not hasFrame:
@@ -432,8 +402,8 @@ while cv2.waitKey(1) < 0:#continues to scan until user presses a key in terminal
         for j in range(4):
             p1 = (vertices[j][0], vertices[j][1])
             p2 = (vertices[(j + 1) % 4][0], vertices[(j + 1) % 4][1])
-            #cv2.line(frame, p1, p2, (0, 255, 0), 2, cv2.LINE_AA)
-        #print("RECTABGLENSSSM")#Every green ractangle
+            # cv2.line(frame, p1, p2, (0, 255, 0), 2, cv2.LINE_AA)
+        # print("RECTABGLENSSSM")#Every green ractangle
     cv2.imshow(kWinName,frame)
     image=frame
     orig = image.copy()
@@ -441,7 +411,7 @@ while cv2.waitKey(1) < 0:#continues to scan until user presses a key in terminal
 
 
 
-#ISSUES: SCans even without text, is not accuracte 100% of the time as it scans one less letter sometimes 
+# ISSUES: SCans even without text, is not accuracte 100% of the time as it scans one less letter sometimes 
 
 
 
