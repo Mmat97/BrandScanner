@@ -9,9 +9,9 @@ BrandScanner
 
 
 ## Advantages
-1.
+1.Simply place text in front of camera without having to click anything 
+2. Implements frozen_east+text_detection 
 
-2.
 
 
 
@@ -76,10 +76,10 @@ In terminal,once in directory with files,
 
 **Run:** 
 
-To start,
+To start, in file directory, 
 
 ```
-	n
+	python3 camera-test2.py --east frozen_east_text_detection.pb 
 ```
 
 
@@ -90,7 +90,9 @@ To start,
 
 ## Functions
 
-BrandScanner : n
+cap = cv2.VideoCapture(0): turn on camera 
+
+cv2.imshow(kWinName,frame): show current frame 
 
 
 
@@ -107,7 +109,7 @@ BrandScanner : n
 
 ## Important Notes:
 
-**NOTE 1:** n
+**NOTE 1:** 
 
 
 
@@ -118,6 +120,7 @@ BrandScanner : n
 1.bashprofile do-make sure evrything correct and then virtualenv module appears
 2. python camera-test.py return ImportError(No module named cv2) because opencv connected
 to python3 only 
+3. Text recognition is not accurate and must be improved
 
 
 
